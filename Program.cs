@@ -52,7 +52,7 @@ Options:");
 
         private static void removeBom(string fileName)
         {
-            string tempName = Path.GetTempFileName();
+            string tempName;
             using (var stream = File.OpenRead(fileName))
             {
                 var buffer = new byte[4];
@@ -62,7 +62,7 @@ Options:");
                     return;
                 }
                 Console.Error.Write("{0}: BOM found - removing...", fileName);
-                using (var outputStream = File.Create(tempName))
+                using (var outputStream = File.Create(tempName = Path.GetTempFileName()))
                 {
                     stream.CopyTo(outputStream);
                 }
