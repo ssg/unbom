@@ -1,19 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net452</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>2.0.0.*</ApplicationVersion>
+    <ApplicationVersion>3.0.0</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <AssemblyTitle>unbom</AssemblyTitle>
     <Product>unbom</Product>
     <Description>Removes UTF-8 BOM marker from text files</Description>
-    <Copyright>Copyright © Sedat Kapanoglu 2016</Copyright>
+    <Copyright>Copyright © Sedat Kapanoglu 2016-2020</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -22,12 +22,4 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Mono.Options-PCL" Version="2.0.40" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
 </Project>

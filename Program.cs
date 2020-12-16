@@ -43,7 +43,9 @@ Options:");
                 path = ".";
             }
             string pattern = Path.GetFileName(spec);
-            var files = Directory.EnumerateFiles(path, pattern, recurse ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
+            var files = Directory.EnumerateFiles(path, pattern, recurse 
+                ? SearchOption.AllDirectories 
+                : SearchOption.TopDirectoryOnly);
             foreach (string fileName in files)
             {
                 removeBom(fileName);
@@ -62,10 +64,11 @@ Options:");
                     return;
                 }
                 Console.Error.Write("{0}: BOM found - removing...", fileName);
-                using (var outputStream = File.Create(tempName = Path.GetTempFileName()))
-                {
-                    stream.CopyTo(outputStream);
-                }
+
+                // GetTempFileName also creates the file
+                string tempFileName = Path.GetTempFileName();
+                using var outputStream = File.Create(tempName = tempFileName);
+                stream.CopyTo(outputStream);
             }
             string backupName = fileName + ".bak";
             if (File.Exists(backupName))
