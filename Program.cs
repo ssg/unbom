@@ -1,59 +1,47 @@
 using System;
 using System.IO;
-using Mono.Options;
+using System.CommandLine;
+using System.CommandLine.Invocation;
 
 namespace unbom
 {
     class Program
     {
-        const uint marker = 0xBFBBEF;
-
-        static bool recurse;
-        static bool nobackup;
-
-        static readonly OptionSet options = new OptionSet()
+        private static readonly RootCommand cmd = new RootCommand("Removes UTF-8 BOM markers from text files")
         {
-            { "r|recurse", "recurse subdirectories", v => recurse = true },
-            { "n|nobackup", "do not save a backup file", v => nobackup = true },
-            { "h|?|help", "show this", v => showUsage() }
+            new Argument<string>("path", "Path to scan"),
+            new Option<bool>(new [] { "-r", "--recurse" }, "recurse subdirectories"),
+            new Option<bool>(new [] { "-n", "--nobackup" }, "do not save a backup file"),
         };
 
-        static void showUsage()
+        static int Main(string[] args)
         {
-            Console.Error.WriteLine(@"Removes UTF-8 BOM markers from text files
-
-Usage: unbom [options] <filespec>
-
-Options:");
-            options.WriteOptionDescriptions(Console.Error);
-            Environment.Exit(1);
+            cmd.Handler = CommandHandler.Create<string, bool, bool>(unbom);
+            return cmd.Invoke(args);            
         }
 
-        static void Main(string[] args)
+        private static void unbom(string spec, bool recurse = false,
+            bool nobackup = false)
         {
-            var extra = options.Parse(args);
-            if (extra.Count != 1)
-            {
-                showUsage();
-            }
-            string spec = extra[0];
             string? path = Path.GetDirectoryName(spec);
             if (String.IsNullOrEmpty(path))
             {
                 path = ".";
             }
             string pattern = Path.GetFileName(spec);
-            var files = Directory.EnumerateFiles(path, pattern, recurse 
-                ? SearchOption.AllDirectories 
+            var files = Directory.EnumerateFiles(path, pattern, recurse
+                ? SearchOption.AllDirectories
                 : SearchOption.TopDirectoryOnly);
             foreach (string fileName in files)
             {
-                removeBom(fileName);
-            }            
+                removeBom(fileName, nobackup);
+            }
         }
 
-        private static void removeBom(string fileName)
+        private static void removeBom(string fileName, bool nobackup)
         {
+            const uint marker = 0xBFBBEF;
+
             string tempName;
             using (var stream = File.OpenRead(fileName))
             {
