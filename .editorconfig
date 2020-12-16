@@ -4,9 +4,9 @@ root = true
 
 [*]
 indent_style = space
+guidelines = 80
 
 [*.cs]
 indent_size = 4
-guidelines = 80
 trim_trailing_whitespace = true
 charset = utf-8
