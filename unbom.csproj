@@ -2,17 +2,12 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
-        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-        <PublishUrl>publish\</PublishUrl>
-        <Install>true</Install>
-        <InstallFrom>Disk</InstallFrom>
-        <MapFileExtensions>true</MapFileExtensions>
-        <ApplicationVersion>3.0.0</ApplicationVersion>
+        <PackageVersion>3.0.0</PackageVersion>
         <BootstrapperEnabled>true</BootstrapperEnabled>
-        <AssemblyTitle>unbom</AssemblyTitle>
-        <Product>unbom</Product>
+        <Title>unbom</Title>
         <Description>Removes UTF-8 BOM marker from text files</Description>
         <Copyright>Copyright © Sedat Kapanoglu 2016-2020</Copyright>
         <Nullable>enable</Nullable>
+        <DebugType>embedded</DebugType>
     </PropertyGroup>
 </Project>
