@@ -1,25 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>3.0.0</ApplicationVersion>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <AssemblyTitle>unbom</AssemblyTitle>
-    <Product>unbom</Product>
-    <Description>Removes UTF-8 BOM marker from text files</Description>
-    <Copyright>Copyright © Sedat Kapanoglu 2016-2020</Copyright>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net5.0</TargetFramework>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <PublishUrl>publish\</PublishUrl>
+        <Install>true</Install>
+        <InstallFrom>Disk</InstallFrom>
+        <MapFileExtensions>true</MapFileExtensions>
+        <ApplicationVersion>3.0.0</ApplicationVersion>
+        <BootstrapperEnabled>true</BootstrapperEnabled>
+        <AssemblyTitle>unbom</AssemblyTitle>
+        <Product>unbom</Product>
+        <Description>Removes UTF-8 BOM marker from text files</Description>
+        <Copyright>Copyright © Sedat Kapanoglu 2016-2020</Copyright>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
 </Project>

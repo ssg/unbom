@@ -37,8 +37,8 @@ Options:");
                 showUsage();
             }
             string spec = extra[0];
-            string path = Path.GetDirectoryName(spec);
-            if (path == "")
+            string? path = Path.GetDirectoryName(spec);
+            if (String.IsNullOrEmpty(path))
             {
                 path = ".";
             }
