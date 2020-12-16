@@ -1,0 +1,12 @@
+# Suppress: EC112
+# To learn more about .editorconfig see https://aka.ms/editorconfigdocs
+root = true
+
+[*]
+indent_style = space
+
+[*.cs]
+indent_size = 4
+guidelines = 80
+trim_trailing_whitespace = true
+charset = utf-8
