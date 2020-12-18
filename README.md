@@ -13,6 +13,13 @@ There are many shell scripts available for removing BOM markers. Many of them ei
 marker can appear inside a file. A careless user can easily corrupt their files. 
 I just wanted a simple and safer tool so I spent an hour on this. 
 
+## install
+Install unbom by running the command:
+
+```
+dotnet install --global unbom
+```
+
 ## usage
 
     Usage: unbom [options] <filespec>
