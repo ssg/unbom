@@ -10,6 +10,7 @@
         <PackAsTool>true</PackAsTool>
         <ToolCommandName>unbom</ToolCommandName>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/ssg/unbom</RepositoryUrl>
         
         <Nullable>enable</Nullable>
         <DebugType>embedded</DebugType>
