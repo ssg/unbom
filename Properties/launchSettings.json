@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "unbom": {
+      "commandName": "Project",
+      "commandLineArgs": "."
+    }
+  }
+}
