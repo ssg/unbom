@@ -1,19 +1,44 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <PackageVersion>3.0.0</PackageVersion>
         <Title>unbom</Title>
         <Description>Removes UTF-8 BOM marker from text files</Description>
         <Copyright>Copyright © Sedat Kapanoglu 2016-2020</Copyright>
-        
+        <Version>3.0.0</Version>
+
         <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
         <PackAsTool>true</PackAsTool>
+        <ToolCommandName>unbom</ToolCommandName>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         
         <Nullable>enable</Nullable>
         <DebugType>embedded</DebugType>
+
+        <PackageReleaseNotes>
+<![CDATA[
+# New features
+- unbom is a dotnet tool now installable from NuGet
+
+# Breaking changes
+- Uses stdout instead of stderr for output
+]]>
+        </PackageReleaseNotes>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(Configuration)=='Release'">
+        <WarningsAsErrors>true</WarningsAsErrors>
     </PropertyGroup>
     <ItemGroup>
+      <None Remove="stylecop.json" />
+    </ItemGroup>
+    <ItemGroup>
+      <AdditionalFiles Include="stylecop.json" />
+    </ItemGroup>
+    <ItemGroup>
       <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
