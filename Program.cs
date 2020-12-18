@@ -13,7 +13,10 @@ namespace Unbom
 {
     internal static class Program
     {
-        private static readonly RootCommand cmd = new RootCommand("Removes UTF-8 BOM markers from text files")
+        private static readonly byte[] bom = new byte[] { 0xEF, 0xBB, 0xBF };
+
+        private static readonly RootCommand cmd =
+            new RootCommand("Removes UTF-8 BOM markers from text files")
         {
             new Argument<string>("path", "Path to scan"),
             new Option<bool>(new[] { "-r", "--recurse" }, "recurse subdirectories"),
@@ -27,42 +30,42 @@ namespace Unbom
         }
 
         private static void unbom(
-            string spec,
+            string path,
             bool recurse = false,
-            bool nobackup = false)
+            bool noBackup = false)
         {
-            Debug.WriteLine($"spec={spec} recurse={recurse} nobackup={nobackup}");
-            string? path = Path.GetDirectoryName(spec);
-            if (String.IsNullOrEmpty(path))
+            Debug.WriteLine($"path={path} recurse={recurse} nobackup={noBackup}");
+            string? directory = Path.GetDirectoryName(path);
+            if (String.IsNullOrEmpty(directory))
             {
-                path = ".";
+                directory = ".";
             }
 
-            string? pattern = Path.GetFileName(spec);
+            string? pattern = Path.GetFileName(path);
             if (String.IsNullOrEmpty(pattern))
             {
                 pattern = "*";
             }
 
-            var files = Directory.EnumerateFiles(path, pattern, recurse
+            Debug.WriteLine($"path={directory} pattern={pattern}");
+
+            var files = Directory.EnumerateFiles(directory, pattern, recurse
                 ? SearchOption.AllDirectories
                 : SearchOption.TopDirectoryOnly);
             foreach (string fileName in files)
             {
-                removeBom(fileName, nobackup);
+                removeBom(fileName, noBackup);
             }
         }
 
         private static void removeBom(string fileName, bool nobackup)
         {
-            const uint marker = 0xBFBBEF;
-
             string tempName;
-            var buffer = new byte[4];
+            var buffer = new byte[3].AsSpan();
             using (var stream = File.OpenRead(fileName))
             {
-                int bytesRead = stream.Read(buffer, 0, 3);
-                if (bytesRead != 3 || marker != BitConverter.ToUInt32(buffer, 0))
+                int bytesRead = stream.Read(buffer);
+                if (bytesRead != buffer.Length || !buffer.SequenceEqual(bom))
                 {
                     return;
                 }
