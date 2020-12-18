@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.CommandLine;
 using System.CommandLine.Invocation;
+using System.Diagnostics;
 
 namespace unbom
 {
@@ -23,6 +24,7 @@ namespace unbom
         private static void unbom(string spec, bool recurse = false,
             bool nobackup = false)
         {
+            Debug.WriteLine($"spec={spec} recurse={recurse} nobackup={nobackup}")
             string? path = Path.GetDirectoryName(spec);
             if (String.IsNullOrEmpty(path))
             {
@@ -51,7 +53,7 @@ namespace unbom
                 {
                     return;
                 }
-                Console.Error.Write("{0}: BOM found - removing...", fileName);
+                Console.Write("{0}: BOM found - removing...", fileName);
 
                 // GetTempFileName also creates the file
                 string tempFileName = Path.GetTempFileName();
@@ -59,17 +61,13 @@ namespace unbom
                 stream.CopyTo(outputStream);
             }
             string backupName = fileName + ".bak";
-            if (File.Exists(backupName))
-            {
-                File.Delete(backupName);
-            }
-            File.Move(fileName, backupName);
+            File.Move(fileName, backupName, overwrite: true);
             File.Move(tempName, fileName);
             if (nobackup)
             {
                 File.Delete(backupName);
             }
-            Console.Error.WriteLine("done");
+            Console.WriteLine("done");
         }
     }
 }
