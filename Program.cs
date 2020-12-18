@@ -58,9 +58,9 @@ namespace Unbom
             const uint marker = 0xBFBBEF;
 
             string tempName;
+            var buffer = new byte[4];
             using (var stream = File.OpenRead(fileName))
             {
-                var buffer = new byte[4];
                 int bytesRead = stream.Read(buffer, 0, 3);
                 if (bytesRead != 3 || marker != BitConverter.ToUInt32(buffer, 0))
                 {
