@@ -17,7 +17,7 @@ I just wanted a simple and safer tool so I spent an hour on this.
 Install unbom by running the command:
 
 ```
-dotnet install --global unbom
+dotnet tool install --global unbom
 ```
 
 ## usage
