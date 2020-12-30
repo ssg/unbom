@@ -4,7 +4,7 @@ Tool to remove UTF-8 BOM markers from files.
 
 ## why
 UTF-8 BOMs are problematic and useless in common cases. A lot of tools don't support BOM markers; command-line
-diff tools for instance. Tools that` `support UTF-8, support it without markers anyway.
+diff tools for instance. Tools that support UTF-8, support it without markers anyway.
 They serve no purpose other than to annoy our diff outputs.
 
 Visual Studio defaults to UTF-8+BOM causing the problems.
