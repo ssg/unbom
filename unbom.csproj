@@ -3,10 +3,10 @@
         <Title>unbom</Title>
         <Description>Removes UTF-8 BOM marker from text files</Description>
         <Copyright>Copyright © Sedat Kapanoglu 2016-2020</Copyright>
-        <Version>3.0.0</Version>
+        <Version>3.1.0</Version>
 
         <OutputType>Exe</OutputType>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <PackAsTool>true</PackAsTool>
         <ToolCommandName>unbom</ToolCommandName>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -18,12 +18,10 @@
         <PackageReleaseNotes>
 <![CDATA[
 # New features
-- unbom is a dotnet tool now installable from NuGet
-
-# Breaking changes
-- Uses stdout instead of stderr for output
+- Upgraded the target framework to .NET 6.0.
 ]]>
         </PackageReleaseNotes>
+        <LangVersion>10.0</LangVersion>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration)=='Release'">
         <WarningsAsErrors>true</WarningsAsErrors>
@@ -35,7 +33,7 @@
       <AdditionalFiles Include="stylecop.json" />
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
+      <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
