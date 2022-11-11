@@ -17,8 +17,9 @@
 
         <PackageReleaseNotes>
 <![CDATA[
-# New features
 - Upgraded the target framework to .NET 6.0.
+- Upgraded System.CommandLine dependency
+- Using System.CommandLine.DragonFruit now to simplify code.
 ]]>
         </PackageReleaseNotes>
         <LangVersion>10.0</LangVersion>
@@ -33,14 +34,7 @@
       <AdditionalFiles Include="stylecop.json" />
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.20574.7" />
+      <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+      <PackageReference Include="System.CommandLine.DragonFruit" Version="0.4.0-alpha.22272.1" />
     </ItemGroup>
 </Project>
