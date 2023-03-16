@@ -3,7 +3,7 @@
         <Title>unbom</Title>
         <Description>Removes UTF-8 BOM marker from text files</Description>
         <Copyright>Copyright © Sedat Kapanoglu 2016-2020</Copyright>
-        <Version>3.1.0</Version>
+        <Version>3.2.0</Version>
 
         <OutputType>Exe</OutputType>
         <TargetFramework>net6.0</TargetFramework>
@@ -17,9 +17,9 @@
 
         <PackageReleaseNotes>
 <![CDATA[
-- Upgraded the target framework to .NET 6.0.
-- Upgraded System.CommandLine dependency
-- Using System.CommandLine.DragonFruit now to simplify code.
+- Report number of files processed.
+- Fix regression preventing wildcards from working.
+- Fix exception on missing directory.
 ]]>
         </PackageReleaseNotes>
         <LangVersion>10.0</LangVersion>
