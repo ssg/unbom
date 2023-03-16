@@ -31,15 +31,21 @@ namespace Unbom
         {
             Debug.WriteLine($"path={path} recurse={recurse} nobackup={noBackup}");
 
-            string? pattern = Path.GetFileName(path.FullName);
+            string? pattern = Path.GetFileName(path);
             if (String.IsNullOrEmpty(pattern))
             {
                 pattern = "*";
             }
+            else
+            {
+                path = Path.GetDirectoryName(path) ?? ".";
+            }
 
             Debug.WriteLine($"path={path} pattern={pattern}");
 
-            var files = Directory.EnumerateFiles(path.FullName, pattern, recurse
+            try
+            {
+                var files = Directory.EnumerateFiles(path, pattern, recurse
                 ? SearchOption.AllDirectories
                 : SearchOption.TopDirectoryOnly);
             foreach (string fileName in files)
