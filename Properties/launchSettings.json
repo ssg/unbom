@@ -1,8 +1,16 @@
 {
   "profiles": {
-    "unbom": {
+    "existing files": {
       "commandName": "Project",
-      "commandLineArgs": "."
+      "commandLineArgs": "D:\\test-folder\\*.sql"
+    },
+    "missing files": {
+      "commandName": "Project",
+      "commandLineArgs": "D:\\test-folder\\*.hedere"
+    },
+    "missing folder": {
+      "commandName": "Project",
+      "commandLineArgs": "D:\\hedere\\*"
     }
   }
 }
