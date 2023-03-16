@@ -19,13 +19,13 @@ namespace Unbom
         /// <param name="argument">Path to scan.</param>
         /// <param name="recurse">recurse subdirectories.</param>
         /// <param name="nobackup">do not save a backup file.</param>
-        public static void Main(DirectoryInfo argument, bool recurse = false, bool nobackup = true)
+        public static void Main(string argument, bool recurse = false, bool nobackup = true)
         {
             unbom(argument, recurse, nobackup);
         }
 
         private static void unbom(
-            DirectoryInfo path,
+            string path,
             bool recurse = false,
             bool noBackup = false)
         {
@@ -46,11 +46,19 @@ namespace Unbom
             try
             {
                 var files = Directory.EnumerateFiles(path, pattern, recurse
-                ? SearchOption.AllDirectories
-                : SearchOption.TopDirectoryOnly);
-            foreach (string fileName in files)
+                    ? SearchOption.AllDirectories
+                    : SearchOption.TopDirectoryOnly);
+                int count = 0;
+                foreach (string fileName in files)
+                {
+                    removeBom(fileName, noBackup);
+                    count++;
+                }
+                Console.WriteLine($"{count} file(s) processed");
+            }
+            catch (DirectoryNotFoundException)
             {
-                removeBom(fileName, noBackup);
+                Console.Error.WriteLine($"Directory not found: {path}");
             }
         }
 
